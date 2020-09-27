@@ -1,0 +1,14 @@
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\ClsStore.dll.config
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\ClsStore.dll
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\ClsStore.pdb
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.dll
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.xml
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csproj.CoreCompileInputs.cache
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csproj.CopyComplete
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.dll
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.pdb
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csprojAssemblyReference.cache
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\Ninject.dll
+C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\Ninject.xml
