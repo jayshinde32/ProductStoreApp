@@ -58,15 +58,18 @@
     <Compile Include="Entity\BaseEntity.cs" />
     <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\Unit.cs" />
     <Compile Include="Operation\CategoryOperation.cs" />
     <Compile Include="Operation\ClsDBContext.cs" />
     <Compile Include="Operation\ProductOperation.cs" />
     <Compile Include="Operation\Repository.cs" />
+    <Compile Include="Operation\UnitOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ICategory.cs" />
     <Compile Include="Service\IDBContext.cs" />
     <Compile Include="Service\IProduct.cs" />
     <Compile Include="Service\IRepository.cs" />
+    <Compile Include="Service\IUnit.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

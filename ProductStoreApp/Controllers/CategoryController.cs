@@ -3,7 +3,9 @@ using ClsStore.Service;
 using ProductStoreApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,18 +14,33 @@ namespace ProductStoreApp.Controllers
     public class CategoryController : Controller
     {
         // GET: Category
-        private ICategory _category;
-        public CategoryController(ICategory category)
-        {
-            this._category = category;
-        }
+       
+        HttpClient client = new HttpClient();       
         public ActionResult Index()
         {
-            IEnumerable<CategoryModel> category = _category.GetCategories().Select(p => new CategoryModel
-            {
-               CategoryID=p.CategoryID,
-               CategoryName=p.CategoryName
-            });
+            IEnumerable<CategoryModel> category = null;
+
+            //client.BaseAddress = new Uri("https://localhost:44323/api/");
+            client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
+           
+                //HTTP GET
+                var response = client.GetAsync("Category");
+                response.Wait();
+
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<CategoryModel>>();
+                    readTask.Wait();
+
+                    category = readTask.Result;
+                }
+                else 
+                {                
+                    category = Enumerable.Empty<CategoryModel>();
+                    ModelState.AddModelError(string.Empty, "Server error.");
+                }
+                
             return View(category);
         }
 
@@ -42,37 +59,21 @@ namespace ProductStoreApp.Controllers
         {
             try
             {
-                
-                if (model.CategoryID == 0)
+                // client.BaseAddress = new Uri("https://localhost:44323/api/Category");
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]+ "Category");
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<CategoryModel>("Category", model);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    Category ctEntity = new Category
-                    {
-                        CategoryName = model.CategoryName,                
-                        CreatedDate = DateTime.Now.Date,
-                        ModifiedDate = DateTime.Now.Date
-
-                };
-                    _category.InsertCat(ctEntity);
-                    if (ctEntity.CategoryID > 0)
-                    {
-                        return RedirectToAction("Index");
-                    }
+                    return RedirectToAction("Index");
                 }
-                else
-                {
-                    Category ctEntity = _category.GetCategory(model.CategoryID);
-                    ctEntity.CategoryName = model.CategoryName;                   
-                    ctEntity.ModifiedDate = DateTime.Now.Date;
+         
+                 ModelState.AddModelError(string.Empty, "Server Error");
 
-                    _category.UpdateCat(ctEntity);
-                    if (ctEntity.CategoryID > 0)
-                    {
-                        return RedirectToAction("Index");
-                    }
-
-                }
-                return View(model);
-               
+            return View(model);
             }
             catch
             {
@@ -84,28 +85,43 @@ namespace ProductStoreApp.Controllers
         public ActionResult Edit(int id)
         {
             CategoryModel model = new CategoryModel();
-            if(id!=0)
+            if (id != 0)
             {
-                Category ctEntity = _category.GetCategory(id);
-                model.CategoryName = ctEntity.CategoryName;
+                //client.BaseAddress = new Uri("https://localhost:44323/api/");
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
+                //HTTP GET
+                var response = client.GetAsync("Category?id=" + id.ToString());
+                response.Wait();
+
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<CategoryModel>();
+                    readTask.Wait();
+
+                    model = readTask.Result;
+                }
             }
             return View(model);
         }
+        
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Category model)
+        public ActionResult Edit(int id, CategoryModel model)
         {
             try
             {
                 if(id!=0)
                 {
-                    Category ctEntity = _category.GetCategory(id);
-                    ctEntity.CategoryName = model.CategoryName;
-                    ctEntity.ModifiedDate = DateTime.Now.Date;
+                    //client.BaseAddress = new Uri("https://localhost:44323/api/Category");
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"] + "Category");
+                    //HTTP POST
+                    var putTask = client.PutAsJsonAsync<CategoryModel>("Category", model);
+                    putTask.Wait();
 
-                    _category.UpdateCat(ctEntity);
-                    if(ctEntity.CategoryID>0)
+                    var result = putTask.Result;
+                    if (result.IsSuccessStatusCode)
                     {
                         return RedirectToAction("Index");
                     }
@@ -125,9 +141,20 @@ namespace ProductStoreApp.Controllers
             CategoryModel model = new CategoryModel();
             if (id != 0)
             {
-                Category ctEntity = _category.GetCategory(id);
-                model.CategoryID = ctEntity.CategoryID;
-                model.CategoryName = ctEntity.CategoryName;
+               // client.BaseAddress = new Uri("https://localhost:44323/api/");
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
+                //HTTP GET
+                var response = client.GetAsync("Category?id=" + id.ToString());
+                response.Wait();
+
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<CategoryModel>();
+                    readTask.Wait();
+
+                    model = readTask.Result;
+                }
             }
             return View(model);
            
@@ -141,16 +168,54 @@ namespace ProductStoreApp.Controllers
             {
                 if (id != 0)
                 {
-                    Category ctEntity = _category.GetCategory(id);
-                    _category.DeleteCat(ctEntity);
-                    return RedirectToAction("Index");
+                   
+                    IEnumerable<ProductModel> product = CheckUnitInUse();
+
+                    if (!product.Where(x => x.Category.CategoryID == id).Any())
+                    {
+                        client = new HttpClient();
+                        // client.BaseAddress = new Uri("https://localhost:44323/api/");
+                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
+                        //HTTP DELETE
+                        var deleteTask = client.DeleteAsync("Category/" + id.ToString());
+                        deleteTask.Wait();
+
+                        var result = deleteTask.Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    ModelState.AddModelError("CategoryID", "This category is in use");
                 }
-                return RedirectToAction("Delete");
+                return View("Delete");
             }
             catch
             {
                 return View();
             }
+        }
+        [NonAction]
+        private IEnumerable<ProductModel> CheckUnitInUse()
+        {
+            IEnumerable<ProductModel> product = null;
+
+            // client.BaseAddress = new Uri("https://localhost:44323/api/");
+            client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ApiUrl"]);
+            //HTTP GET
+            var response = client.GetAsync("Product");
+            response.Wait();
+
+            var result = response.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<ProductModel>>();
+                readTask.Wait();
+
+                product = readTask.Result;
+
+            }
+            return product;
         }
     }
 }

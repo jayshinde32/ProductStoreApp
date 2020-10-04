@@ -1,4 +1,4 @@
-﻿using Ninject;
+﻿
 using ProductStoreApp.App_Start;
 using System;
 using System.Collections.Generic;

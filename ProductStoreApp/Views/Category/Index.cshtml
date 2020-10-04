@@ -9,15 +9,15 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
+<table class="table" style="width:80%">
+    <tr style="background: #31ef746e;">
         <th>
             @Html.DisplayNameFor(model => model.CategoryID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CategoryName)
         </th>
-        <th></th>
+        <th align="right"> @Html.DisplayName("Action")</th>
     </tr>
 
 @foreach (var item in Model) {

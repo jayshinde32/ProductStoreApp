@@ -1,0 +1,14 @@
+E:\Project\ProductStoreApp\ClsStore\bin\Release\ClsStore.dll.config
+E:\Project\ProductStoreApp\ClsStore\bin\Release\ClsStore.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Release\ClsStore.pdb
+E:\Project\ProductStoreApp\ClsStore\bin\Release\EntityFramework.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Release\EntityFramework.SqlServer.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Release\Ninject.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Release\EntityFramework.xml
+E:\Project\ProductStoreApp\ClsStore\bin\Release\EntityFramework.SqlServer.xml
+E:\Project\ProductStoreApp\ClsStore\bin\Release\Ninject.xml
+E:\Project\ProductStoreApp\ClsStore\obj\Release\ClsStore.csprojAssemblyReference.cache
+E:\Project\ProductStoreApp\ClsStore\obj\Release\ClsStore.csproj.CoreCompileInputs.cache
+E:\Project\ProductStoreApp\ClsStore\obj\Release\ClsStore.csproj.CopyComplete
+E:\Project\ProductStoreApp\ClsStore\obj\Release\ClsStore.dll
+E:\Project\ProductStoreApp\ClsStore\obj\Release\ClsStore.pdb

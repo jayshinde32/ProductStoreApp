@@ -12,3 +12,16 @@ C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.pdb
 C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csprojAssemblyReference.cache
 C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\Ninject.dll
 C:\Users\Jaydeep\source\repos\ProductStoreApp\ClsStore\bin\Debug\Ninject.xml
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\ClsStore.dll.config
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\ClsStore.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\ClsStore.pdb
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.SqlServer.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\Ninject.dll
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.xml
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\EntityFramework.SqlServer.xml
+E:\Project\ProductStoreApp\ClsStore\bin\Debug\Ninject.xml
+E:\Project\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csproj.CoreCompileInputs.cache
+E:\Project\ProductStoreApp\ClsStore\obj\Debug\ClsStore.csproj.CopyComplete
+E:\Project\ProductStoreApp\ClsStore\obj\Debug\ClsStore.dll
+E:\Project\ProductStoreApp\ClsStore\obj\Debug\ClsStore.pdb

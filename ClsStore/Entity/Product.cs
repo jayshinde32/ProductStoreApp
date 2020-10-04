@@ -14,9 +14,10 @@ namespace ClsStore.Entity
         [Key]
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public decimal Price { get; set; }
-        public decimal Unit { get; set; }        
-        public int CategoryID { get; set; }       
-        public Category Category { get; set; }
+        public decimal Price { get; set; }            
+        public int CategoryID { get; set; }
+        public int UnitID { get; set; }
+        public Category category { get; set; }
+        public Unit unit { get; set; }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ProductStoreApp.Models.UnitModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Unit List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" style="width:80%">
+    <tr style="background: #31ef746e;">
+        <th>
+            @Html.DisplayNameFor(model => model.UnitID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitType)
+        </th>
+        <th align="right"> @Html.DisplayName("Action")</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitType)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UnitID }) |            
+            @Html.ActionLink("Delete", "Delete", new { id=item.UnitID })
+        </td>
+    </tr>
+}
+</table>
